@@ -4,11 +4,25 @@ export interface PositionProps {
   StatusError: Error | undefined;
 }
 
-export interface CityProps {
+export class CityProps {
+  constructor() {
+    this.Version = "1";
+    this.Key = "";
+    this.Type = "";
+    this.LocalizedName = "";
+  }
+
   Version: string;
   Key: string;
   Type: string;
   LocalizedName: string;
+
+  Set(props: CityProps) {
+    this.Version = props.Version;
+    this.Key = props.Key;
+    this.Type = props.Type;
+    this.LocalizedName = props.LocalizedName;
+  }
 }
 
 export interface HeadlineProps {
@@ -139,9 +153,27 @@ export interface OneDayForecastProps {
   Link: string;
 }
 
-export interface WeatherForecastProps {
+export class WeatherForecastProps {
+  constructor() {
+    this.Headline = {
+      Text: "",
+      EffectiveDate: "",
+      EffectiveEpochDate: 0,
+      Severity: 0,
+      Category: "",
+      EndDate: "",
+      EndEpochDate: 0,
+    };
+    this.DailyForecasts = Array<OneDayForecastProps>(0);
+  }
+
   Headline: HeadlineProps;
   DailyForecasts: OneDayForecastProps[];
+
+  async Set(props: WeatherForecastProps) {
+    this.Headline = props.Headline;
+    this.DailyForecasts = props.DailyForecasts.map((item) => item);
+  }
 }
 
 export type PositionResultCallback = (position: PositionProps) => void;
@@ -182,16 +214,7 @@ export async function getCityByLocation(
 ): Promise<CityProps> {
   const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&q=${latitude},${longitude}&language=fr-fr&details=false&toplevel=true`;
 
-  const dataReceived = await processRequest<CityProps[]>(request);
-  if (dataReceived.length === 0) {
-    // No city was found matching criteria.
-    return new Promise((_resolve, reject) =>
-      reject(
-        `No city was found around the position (${latitude}, ${longitude}).`,
-      ),
-    );
-  }
-  return dataReceived[0] as CityProps;
+  return (await processRequest<CityProps>(request)) as CityProps;
 }
 
 export async function getFiveDaysWeatherForecast(
