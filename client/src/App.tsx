@@ -12,10 +12,13 @@ import {
 } from "./library/api-weather";
 
 function App() {
-  const [weatherForecast] = useState<WeatherForecastProps>(
+  const [weatherForecast, setWeatherForecast] = useState<WeatherForecastProps>(
     new WeatherForecastProps(),
   );
-  const [city] = useState<CityProps>(new CityProps());
+  weatherForecast.FunctionSet = setWeatherForecast;
+
+  const [city, setCity] = useState<CityProps>(new CityProps());
+  city.FunctionSet = setCity;
 
   useEffect(() => {
     getCurrentPosition((position) => {
@@ -25,11 +28,11 @@ function App() {
           position.Longitude as number,
         )
           .then((city_props) => {
-            city.Set(city_props);
+            city.FunctionSet(city_props);
             return getFiveDaysWeatherForecast(city_props.Key as string);
           })
           .then((weatherForecast_props) => {
-            weatherForecast.Set(weatherForecast_props);
+            weatherForecast.FunctionSet(weatherForecast_props);
           });
       }
     });

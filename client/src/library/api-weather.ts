@@ -1,3 +1,5 @@
+import type { SetStateAction } from "react";
+
 export interface PositionProps {
   Latitude: number | undefined;
   Longitude: number | undefined;
@@ -10,19 +12,14 @@ export class CityProps {
     this.Key = "";
     this.Type = "";
     this.LocalizedName = "";
+    this.FunctionSet = (_value: SetStateAction<CityProps>) => {};
   }
 
   Version: string;
   Key: string;
   Type: string;
   LocalizedName: string;
-
-  Set(props: CityProps) {
-    this.Version = props.Version;
-    this.Key = props.Key;
-    this.Type = props.Type;
-    this.LocalizedName = props.LocalizedName;
-  }
+  FunctionSet: React.Dispatch<React.SetStateAction<CityProps>>;
 }
 
 export interface HeadlineProps {
@@ -165,15 +162,12 @@ export class WeatherForecastProps {
       EndEpochDate: 0,
     };
     this.DailyForecasts = Array<OneDayForecastProps>(0);
+    this.FunctionSet = (_value: SetStateAction<WeatherForecastProps>) => {};
   }
 
   Headline: HeadlineProps;
   DailyForecasts: OneDayForecastProps[];
-
-  async Set(props: WeatherForecastProps) {
-    this.Headline = props.Headline;
-    this.DailyForecasts = props.DailyForecasts.map((item) => item);
-  }
+  FunctionSet: React.Dispatch<React.SetStateAction<WeatherForecastProps>>;
 }
 
 export type PositionResultCallback = (position: PositionProps) => void;
