@@ -14,31 +14,57 @@ import {
 } from "./library/api-weather";
 
 function App() {
+  const storedWeatherForecastString =
+    window.localStorage.getItem("weather-forecast");
+  let storedWeatherForecast = null;
+
+  if (storedWeatherForecastString !== null) {
+    storedWeatherForecast = JSON.parse(
+      storedWeatherForecastString,
+    ) as WeatherForecastProps;
+  } else {
+    storedWeatherForecast = new WeatherForecastProps();
+  }
+
   const [weatherForecast, setWeatherForecast] = useState<WeatherForecastProps>(
-    new WeatherForecastProps(),
+    storedWeatherForecast,
   );
+
   weatherForecast.FunctionSet = setWeatherForecast;
 
   const [city, setCity] = useState<CityProps>(new CityProps());
   city.FunctionSet = setCity;
 
   useEffect(() => {
-    getCurrentPosition((position) => {
-      if (position.StatusError === undefined) {
-        getCityByLocation(
-          position.Latitude as number,
-          position.Longitude as number,
-        )
-          .then((city_props) => {
-            city.FunctionSet(city_props);
-            return getFiveDaysWeatherForecast(city_props.Key as string);
-          })
-          .then((weatherForecast_props) => {
-            weatherForecast.FunctionSet(weatherForecast_props);
-          });
-      }
-    });
-  }, [city, weatherForecast]);
+    if (storedWeatherForecast.DailyForecasts.length === 0) {
+      getCurrentPosition((position) => {
+        if (position.StatusError === undefined) {
+          getCityByLocation(
+            position.Latitude as number,
+            position.Longitude as number,
+          )
+            .then((city_props) => {
+              city.FunctionSet(city_props);
+              return getFiveDaysWeatherForecast(city_props.Key as string);
+            })
+            .then((weatherForecast_props) => {
+              if (storedWeatherForecastString === null) {
+                window.localStorage.setItem(
+                  "weather-forecast",
+                  JSON.stringify(weatherForecast_props),
+                );
+              }
+              weatherForecast.FunctionSet(weatherForecast_props);
+            });
+        }
+      });
+    }
+  }, [
+    city,
+    weatherForecast,
+    storedWeatherForecast,
+    storedWeatherForecastString,
+  ]);
 
   return (
     <WeatherContext.Provider value={weatherForecast}>

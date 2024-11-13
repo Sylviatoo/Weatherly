@@ -188,8 +188,17 @@ async function processRequest<T>(request: string): Promise<T> {
   }
 }
 
+const apiKeys = [
+  "wPNTWvSwEiAcTKGfGBXAwySHjpiHEtpA",
+  "UWUGnSJobAb8rIlBX3NIZnGFEmcvVY5M",
+  "Rl0YvGJUS6ILOWXrZEwGUT8VXAOlbBRB",
+  "x5oa58aEBbeBxRJShX32M732tyTeqJPT",
+];
+
+const apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+
 export async function getCityByName(cityName: string): Promise<CityProps> {
-  const request = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&q=${cityName}&language=fr-fr&details=false`;
+  const request = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${cityName}&language=fr-fr&details=false`;
 
   const dataReceived = await processRequest<CityProps[]>(request);
   if (dataReceived.length === 0) {
@@ -206,7 +215,7 @@ export async function getCityByLocation(
   latitude: number,
   longitude: number,
 ): Promise<CityProps> {
-  const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&q=${latitude},${longitude}&language=fr-fr&details=false&toplevel=true`;
+  const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude},${longitude}&language=fr-fr&details=false&toplevel=true`;
 
   return (await processRequest<CityProps>(request)) as CityProps;
 }
@@ -214,7 +223,7 @@ export async function getCityByLocation(
 export async function getFiveDaysWeatherForecast(
   cityKey: string,
 ): Promise<WeatherForecastProps> {
-  const request = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&language=fr-fr&metric=true&details=true`;
+  const request = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${apiKey}&language=fr-fr&metric=true&details=true`;
 
   return await processRequest<WeatherForecastProps>(request);
 }
