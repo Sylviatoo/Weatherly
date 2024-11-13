@@ -121,7 +121,303 @@ export interface WeatherConditionProps {
   };
 }
 
-export interface OneDayForecastProps {
+export class OneDayForecastProps {
+  constructor() {
+    this.Date = "";
+    this.EpochDate = 0;
+    this.Sun = {
+      Rise: "",
+      Set: "",
+      EpochRise: 0,
+      EpochSet: 0,
+    };
+    this.Moon = {
+      Rise: "",
+      Set: "",
+      EpochRise: 0,
+      EpochSet: 0,
+      Phase: "",
+      Age: 0,
+    };
+    this.Temperature = {
+      Minimum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Maximum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+    };
+    this.RealFeelTemperature = {
+      Minimum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+      Maximum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+    };
+    this.RealFeelTemperatureShade = {
+      Minimum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+      Maximum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+    };
+    this.HoursOfSun = 0;
+    this.DegreeDaySummary = {
+      Heating: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Cooling: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+    };
+    this.Sources = Array<string>(0);
+    this.Link = "";
+    this.MobileLink = "";
+    this.Day = {
+      Icon: 0,
+      IconPhrase: "",
+      HasPrecipitation: false,
+      ShortPhrase: "",
+      LongPhrase: "",
+      PrecipitationProbability: 0,
+      ThunderstormProbability: 0,
+      RainProbability: 0,
+      SnowProbability: 0,
+      IceProbability: 0,
+      Wind: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      WindGust: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      TotalLiquid: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Rain: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Snow: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Ice: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      HoursOfPrecipitation: 0,
+      HoursOfRain: 0,
+      HoursOfSnow: 0,
+      HoursOfIce: 0,
+      CloudCover: 0,
+      Evapotranspiration: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      SolarIrradiance: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      RelativeHumidity: {
+        Minimum: 0,
+        Maximum: 0,
+        Average: 0,
+      },
+      WetBulbTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+      WetBulbGlobeTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+    };
+
+    this.Night = {
+      Icon: 0,
+      IconPhrase: "",
+      HasPrecipitation: false,
+      ShortPhrase: "",
+      LongPhrase: "",
+      PrecipitationProbability: 0,
+      ThunderstormProbability: 0,
+      RainProbability: 0,
+      SnowProbability: 0,
+      IceProbability: 0,
+      Wind: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      WindGust: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      TotalLiquid: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Rain: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Snow: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Ice: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      HoursOfPrecipitation: 0,
+      HoursOfRain: 0,
+      HoursOfSnow: 0,
+      HoursOfIce: 0,
+      CloudCover: 0,
+      Evapotranspiration: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      SolarIrradiance: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      RelativeHumidity: {
+        Minimum: 0,
+        Maximum: 0,
+        Average: 0,
+      },
+      WetBulbTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+      WetBulbGlobeTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+    };
+  }
+
   Date: string;
   EpochDate: number;
   Sun: SunProps;
