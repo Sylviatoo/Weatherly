@@ -1,10 +1,13 @@
-import { useContext } from "react";
-import CityContext from "../contexts/CityContext";
-import type { CityProps } from "../library/api-weather";
+import CityLocation from "./CityLocation";
+import SunTime from "./SunTime";
 
 function WelcomePage() {
-  const cityContext = useContext<CityProps>(CityContext);
-  return <h1>Welcome at {cityContext.LocalizedName}</h1>;
+  return (
+    <>
+      <CityLocation />
+      <SunTime />
+    </>
+  );
 }
 
 export default WelcomePage;

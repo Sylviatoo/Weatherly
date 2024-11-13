@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import CityContext from "./contexts/CityContext";
 import WeatherContext from "./contexts/WeatherContext";
 import {
@@ -41,14 +43,16 @@ function App() {
   return (
     <WeatherContext.Provider value={weatherForecast}>
       <CityContext.Provider value={city}>
-        <nav>
-          <Link to="/">Accueil</Link>
-          <Link to="FiveDays">5jours</Link>
-          <Link to="Favorites">Favoris</Link>
-        </nav>
+        <header>
+          <Header />
+        </header>
+
         <main>
           <Outlet />
         </main>
+        <footer>
+          <Footer />
+        </footer>
       </CityContext.Provider>
     </WeatherContext.Provider>
   );
