@@ -14,9 +14,29 @@ import {
 } from "./library/api-weather";
 
 function App() {
-  const storedWeatherForecastString =
+  let storedWeatherForecastString =
     window.localStorage.getItem("weather-forecast");
   let storedWeatherForecast = null;
+  let storedCityString = window.localStorage.getItem("weather-city");
+  let storedCity = null;
+
+  if (storedWeatherForecastString !== null) {
+    // preliminary: check if weather forecast is outdated (if it was set more than 24 hours before).
+    storedWeatherForecast = JSON.parse(
+      storedWeatherForecastString,
+    ) as WeatherForecastProps;
+    const dateForecast = new Date(storedWeatherForecast.DailyForecasts[0].Date);
+    const dateCurrent = new Date();
+    const time = dateCurrent.getTime() - dateForecast.getTime();
+    if (time > 24 * 60 * 60 * 1000) {
+      // in this case, we remove the local storage.
+      window.localStorage.removeItem("weather-forecast");
+      window.localStorage.removeItem("weather-city");
+
+      storedWeatherForecastString = null;
+      storedCityString = null;
+    }
+  }
 
   if (storedWeatherForecastString !== null) {
     storedWeatherForecast = JSON.parse(
@@ -29,14 +49,21 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState<WeatherForecastProps>(
     storedWeatherForecast,
   );
-
   weatherForecast.FunctionSet = setWeatherForecast;
 
-  const [city, setCity] = useState<CityProps>(new CityProps());
+  if (storedCityString !== null) {
+    storedCity = JSON.parse(storedCityString) as CityProps;
+  } else {
+    storedCity = new CityProps();
+  }
+
+  const [city, setCity] = useState<CityProps>(storedCity);
   city.FunctionSet = setCity;
 
   useEffect(() => {
-    if (storedWeatherForecast.DailyForecasts.length === 0) {
+    if (storedWeatherForecast.Headline.EffectiveEpochDate === 0) {
+      // weather forcast object is set with empty object.
+      // we perform a request to API.
       getCurrentPosition((position) => {
         if (position.StatusError === undefined) {
           getCityByLocation(
@@ -44,6 +71,10 @@ function App() {
             position.Longitude as number,
           )
             .then((city_props) => {
+              window.localStorage.setItem(
+                "weather-city",
+                JSON.stringify(city_props),
+              );
               city.FunctionSet(city_props);
               return getFiveDaysWeatherForecast(city_props.Key as string);
             })
