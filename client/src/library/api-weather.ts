@@ -457,7 +457,7 @@ export class WeatherForecastProps {
       EndDate: "",
       EndEpochDate: 0,
     };
-    this.DailyForecasts = Array<OneDayForecastProps>(0);
+    this.DailyForecasts = Array<OneDayForecastProps>(new OneDayForecastProps());
     this.FunctionSet = (_value: SetStateAction<WeatherForecastProps>) => {};
   }
 

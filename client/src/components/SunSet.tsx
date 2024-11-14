@@ -4,13 +4,8 @@ import type { WeatherForecastProps } from "../library/api-weather";
 
 function SunSet() {
   const weatherContext = useContext<WeatherForecastProps>(WeatherContext);
-  let dateSunset = undefined;
-  if (weatherContext.DailyForecasts.length === 0) {
-    dateSunset = new Date();
-  } else {
-    const timeSunset = weatherContext.DailyForecasts[0].Sun.Set;
-    dateSunset = new Date(timeSunset);
-  }
+  const timeSunset = weatherContext.DailyForecasts[0].Sun.Set;
+  const dateSunset = new Date(timeSunset);
 
   return (
     <div>

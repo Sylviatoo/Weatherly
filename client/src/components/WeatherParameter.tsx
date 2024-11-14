@@ -1,17 +1,9 @@
 import { useContext } from "react";
 import WeatherContext from "../contexts/WeatherContext";
-import { OneDayForecastProps } from "../library/api-weather";
 
 function WeatherParamater() {
   const weatherContext = useContext(WeatherContext);
-  let weather = undefined;
-  let weatherDay = undefined;
-  if (weatherContext.DailyForecasts.length === 0) {
-    weatherDay = new OneDayForecastProps();
-  } else {
-    weatherDay = weatherContext.DailyForecasts[0];
-  }
-  weather = weatherDay.Day;
+  const weather = weatherContext.DailyForecasts[0].Day;
   return (
     <div>
       <div>
