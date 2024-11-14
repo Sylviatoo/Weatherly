@@ -61,7 +61,7 @@ function App() {
   city.FunctionSet = setCity;
 
   useEffect(() => {
-    if (storedWeatherForecast.Headline.EffectiveEpochDate === 0) {
+    if (storedWeatherForecastString == null) {
       // weather forcast object is set with empty object.
       // we perform a request to API.
       getCurrentPosition((position) => {
@@ -79,23 +79,16 @@ function App() {
               return getFiveDaysWeatherForecast(city_props.Key as string);
             })
             .then((weatherForecast_props) => {
-              if (storedWeatherForecastString === null) {
-                window.localStorage.setItem(
-                  "weather-forecast",
-                  JSON.stringify(weatherForecast_props),
-                );
-              }
+              window.localStorage.setItem(
+                "weather-forecast",
+                JSON.stringify(weatherForecast_props),
+              );
               weatherForecast.FunctionSet(weatherForecast_props);
             });
         }
       });
     }
-  }, [
-    city,
-    weatherForecast,
-    storedWeatherForecast,
-    storedWeatherForecastString,
-  ]);
+  }, [city, weatherForecast, storedWeatherForecastString]);
 
   return (
     <WeatherContext.Provider value={weatherForecast}>
