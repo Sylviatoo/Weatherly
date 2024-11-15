@@ -1,14 +1,25 @@
+import type { SetStateAction } from "react";
+
 export interface PositionProps {
   Latitude: number | undefined;
   Longitude: number | undefined;
   StatusError: Error | undefined;
 }
 
-export interface CityProps {
+export class CityProps {
+  constructor() {
+    this.Version = "1";
+    this.Key = "";
+    this.Type = "";
+    this.LocalizedName = "";
+    this.FunctionSet = (_value: SetStateAction<CityProps>) => {};
+  }
+
   Version: string;
   Key: string;
   Type: string;
   LocalizedName: string;
+  FunctionSet: React.Dispatch<React.SetStateAction<CityProps>>;
 }
 
 export interface HeadlineProps {
@@ -110,7 +121,303 @@ export interface WeatherConditionProps {
   };
 }
 
-export interface OneDayForecastProps {
+export class OneDayForecastProps {
+  constructor() {
+    this.Date = "";
+    this.EpochDate = 0;
+    this.Sun = {
+      Rise: "",
+      Set: "",
+      EpochRise: 0,
+      EpochSet: 0,
+    };
+    this.Moon = {
+      Rise: "",
+      Set: "",
+      EpochRise: 0,
+      EpochSet: 0,
+      Phase: "",
+      Age: 0,
+    };
+    this.Temperature = {
+      Minimum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Maximum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+    };
+    this.RealFeelTemperature = {
+      Minimum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+      Maximum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+    };
+    this.RealFeelTemperatureShade = {
+      Minimum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+      Maximum: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+        Phrase: "",
+      },
+    };
+    this.HoursOfSun = 0;
+    this.DegreeDaySummary = {
+      Heating: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Cooling: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+    };
+    this.Sources = Array<string>(0);
+    this.Link = "";
+    this.MobileLink = "";
+    this.Day = {
+      Icon: 0,
+      IconPhrase: "",
+      HasPrecipitation: false,
+      ShortPhrase: "",
+      LongPhrase: "",
+      PrecipitationProbability: 0,
+      ThunderstormProbability: 0,
+      RainProbability: 0,
+      SnowProbability: 0,
+      IceProbability: 0,
+      Wind: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      WindGust: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      TotalLiquid: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Rain: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Snow: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Ice: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      HoursOfPrecipitation: 0,
+      HoursOfRain: 0,
+      HoursOfSnow: 0,
+      HoursOfIce: 0,
+      CloudCover: 0,
+      Evapotranspiration: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      SolarIrradiance: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      RelativeHumidity: {
+        Minimum: 0,
+        Maximum: 0,
+        Average: 0,
+      },
+      WetBulbTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+      WetBulbGlobeTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+    };
+
+    this.Night = {
+      Icon: 0,
+      IconPhrase: "",
+      HasPrecipitation: false,
+      ShortPhrase: "",
+      LongPhrase: "",
+      PrecipitationProbability: 0,
+      ThunderstormProbability: 0,
+      RainProbability: 0,
+      SnowProbability: 0,
+      IceProbability: 0,
+      Wind: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      WindGust: {
+        Speed: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Direction: {
+          Degrees: 0,
+          Localized: "",
+          English: "",
+        },
+      },
+      TotalLiquid: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Rain: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Snow: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      Ice: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      HoursOfPrecipitation: 0,
+      HoursOfRain: 0,
+      HoursOfSnow: 0,
+      HoursOfIce: 0,
+      CloudCover: 0,
+      Evapotranspiration: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      SolarIrradiance: {
+        Value: 0,
+        Unit: "",
+        UnitType: 0,
+      },
+      RelativeHumidity: {
+        Minimum: 0,
+        Maximum: 0,
+        Average: 0,
+      },
+      WetBulbTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+      WetBulbGlobeTemperature: {
+        Minimum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Maximum: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+        Average: {
+          Value: 0,
+          Unit: "",
+          UnitType: 0,
+        },
+      },
+    };
+  }
+
   Date: string;
   EpochDate: number;
   Sun: SunProps;
@@ -139,9 +446,24 @@ export interface OneDayForecastProps {
   Link: string;
 }
 
-export interface WeatherForecastProps {
+export class WeatherForecastProps {
+  constructor() {
+    this.Headline = {
+      Text: "",
+      EffectiveDate: "",
+      EffectiveEpochDate: 0,
+      Severity: 0,
+      Category: "",
+      EndDate: "",
+      EndEpochDate: 0,
+    };
+    this.DailyForecasts = Array<OneDayForecastProps>(new OneDayForecastProps());
+    this.FunctionSet = (_value: SetStateAction<WeatherForecastProps>) => {};
+  }
+
   Headline: HeadlineProps;
   DailyForecasts: OneDayForecastProps[];
+  FunctionSet: React.Dispatch<React.SetStateAction<WeatherForecastProps>>;
 }
 
 export type PositionResultCallback = (position: PositionProps) => void;
@@ -162,8 +484,15 @@ async function processRequest<T>(request: string): Promise<T> {
   }
 }
 
+const { VITE_API_KEY1, VITE_API_KEY2, VITE_API_KEY3, VITE_API_KEY4 } =
+  import.meta.env;
+
+const apiKeys = [VITE_API_KEY1, VITE_API_KEY2, VITE_API_KEY3, VITE_API_KEY4];
+
+const apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+
 export async function getCityByName(cityName: string): Promise<CityProps> {
-  const request = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&q=${cityName}&language=fr-fr&details=false`;
+  const request = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${cityName}&language=fr-fr&details=false`;
 
   const dataReceived = await processRequest<CityProps[]>(request);
   if (dataReceived.length === 0) {
@@ -180,24 +509,15 @@ export async function getCityByLocation(
   latitude: number,
   longitude: number,
 ): Promise<CityProps> {
-  const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&q=${latitude},${longitude}&language=fr-fr&details=false&toplevel=true`;
+  const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude},${longitude}&language=fr-fr&details=false&toplevel=true`;
 
-  const dataReceived = await processRequest<CityProps[]>(request);
-  if (dataReceived.length === 0) {
-    // No city was found matching criteria.
-    return new Promise((_resolve, reject) =>
-      reject(
-        `No city was found around the position (${latitude}, ${longitude}).`,
-      ),
-    );
-  }
-  return dataReceived[0] as CityProps;
+  return (await processRequest<CityProps>(request)) as CityProps;
 }
 
 export async function getFiveDaysWeatherForecast(
   cityKey: string,
 ): Promise<WeatherForecastProps> {
-  const request = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=x5oa58aEBbeBxRJShX32M732tyTeqJPT&language=fr-fr&metric=true&details=true`;
+  const request = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${apiKey}&language=fr-fr&metric=true&details=true`;
 
   return await processRequest<WeatherForecastProps>(request);
 }
