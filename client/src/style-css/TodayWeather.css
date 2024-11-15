@@ -1,0 +1,40 @@
+.today-weather-style {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 100%;
+  max-height: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.today-icon {
+  width: 50%;
+  height: none;
+  margin: 1rem;
+}
+
+.title-style {
+  background-color: #53779c;
+  opacity: 0.33;
+  border-radius: 12px;
+  font-size: 2rem;
+}
+
+.current-time {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .today-weather-style {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+  }
+
+  .weather-box {
+    width: 100%;
+    max-width: 100%;
+  }
+}

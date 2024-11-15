@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import WeatherContext from "../contexts/WeatherContext";
+import "../style-css/TodayWeather.css";
+import "../style-css/WeatherBox.css";
 
 function TodayWeather() {
   const weatherContext = useContext(WeatherContext);
@@ -12,13 +14,14 @@ function TodayWeather() {
   const iconNumber = weather.Day.Icon;
 
   return (
-    <div>
-      <h4>Aujourd'hui</h4>
+    <div className="today-weather-style">
+      <h4 className="title-style">Aujourd'hui</h4>
       <img
         src={`/src/assets/images/${iconNumber}.png`}
         alt={weather.Day.IconPhrase}
+        className="today-icon"
       />
-      <p>{`${currentTemp}°${maxUnitTemp}`}</p>
+      <p className="current-time">{`${currentTemp}°${maxUnitTemp}`}</p>
       <p>{`${minTemp}°${minUnitTemp} - ${maxTemp}°${maxUnitTemp}`}</p>
     </div>
   );

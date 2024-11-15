@@ -1,0 +1,20 @@
+.welcome-page-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0%;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .welcome-page-style {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2rem;
+  }
+
+  .today-weather-style,
+  .weather-box {
+    width: 100%;
+  }
+}

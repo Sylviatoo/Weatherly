@@ -1,10 +1,11 @@
 import SunRise from "./SunRise";
 import SunSet from "./SunSet";
+import "../style-css/SunTime.css";
 
 function SunTime() {
   return (
     <>
-      <div>
+      <div className="sun-time-style">
         <SunRise />
         <SunSet />
       </div>

@@ -1,0 +1,6 @@
+.today-weather-style .weather-box {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  text-align: center;
+}
