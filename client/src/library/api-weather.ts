@@ -484,12 +484,10 @@ async function processRequest<T>(request: string): Promise<T> {
   }
 }
 
-const apiKeys = [
-  "wPNTWvSwEiAcTKGfGBXAwySHjpiHEtpA",
-  "UWUGnSJobAb8rIlBX3NIZnGFEmcvVY5M",
-  "Rl0YvGJUS6ILOWXrZEwGUT8VXAOlbBRB",
-  "x5oa58aEBbeBxRJShX32M732tyTeqJPT",
-];
+const { VITE_API_KEY1, VITE_API_KEY2, VITE_API_KEY3, VITE_API_KEY4 } =
+  import.meta.env;
+
+const apiKeys = [VITE_API_KEY1, VITE_API_KEY2, VITE_API_KEY3, VITE_API_KEY4];
 
 const apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
 
