@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import WeatherContext from "../contexts/WeatherContext";
 import "../style-css/TodayWeather.css";
-import "../style-css/WeatherBox.css";
+import "../style-css/ResponsiveBox.css";
 
 function TodayWeather() {
   const weatherContext = useContext(WeatherContext);

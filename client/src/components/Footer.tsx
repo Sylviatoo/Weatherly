@@ -1,7 +1,12 @@
+import "../style-css/Footer.css";
+
 function Footer() {
   return (
     <>
-      <div>Footer</div>
+      <div className="footer-style">
+        {" "}
+        Made with ❤︎ by Sylvia | Thierry | Abdou | Emma{" "}
+      </div>
     </>
   );
 }

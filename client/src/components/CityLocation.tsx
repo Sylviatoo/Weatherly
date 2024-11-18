@@ -2,6 +2,7 @@ import { useContext } from "react";
 import CityContext from "../contexts/CityContext";
 import type { CityProps } from "../library/api-weather";
 import "../style-css/CityLocation.css";
+import "../style-css/ResponsiveBox.css";
 
 function CityLocation() {
   const cityContext = useContext<CityProps>(CityContext);
