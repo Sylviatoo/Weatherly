@@ -28,6 +28,30 @@ function SearchBar() {
     }
   };
 
+  const handleLiClick = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  ) => {
+    if (event == null) {
+      return;
+    }
+    if (event.currentTarget == null) {
+      return;
+    }
+
+    const cityString = event.currentTarget.getAttribute("city-prop");
+    if (cityString == null) {
+      return;
+    }
+
+    const cityProps = JSON.parse(cityString as string) as CityProps;
+    event.currentTarget.textContent = cityProps.LocalizedName;
+    const cities = citiesArray.map((item) => item);
+    cities.push(cityProps);
+    setCitiesArray(Array<CityProps>(0));
+  };
+
+  const handleLiKeyDown = () => {};
+
   return (
     <div id="search-bar">
       <img src="/src/assets/search.png" alt="" />
@@ -40,7 +64,12 @@ function SearchBar() {
       <ul>
         {citiesArray.map((item) => {
           return (
-            <li key={item.Key} city-prop={JSON.stringify(item)}>
+            <li
+              key={item.Key}
+              city-prop={JSON.stringify(item)}
+              onClick={handleLiClick}
+              onKeyDown={handleLiKeyDown}
+            >
               {`${item.LocalizedName}, ${item.AdministrativeArea.LocalizedName}, ${item.Country.LocalizedName}`}
             </li>
           );
