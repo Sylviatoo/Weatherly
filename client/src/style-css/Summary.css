@@ -15,7 +15,7 @@
   padding: 10px;
 }
 
-.summary-style>p {
+.summary-style > p {
   font-size: 1rem;
   padding-top: 10px;
 }
@@ -40,5 +40,4 @@
   background-color: rgba(112, 150, 188, 0.33);
   border-radius: 12px;
   z-index: -1;
-
 }
