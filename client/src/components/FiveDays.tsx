@@ -62,7 +62,7 @@ function Days() {
   return (
     <div>
       <h2 className="days">5 jours</h2>
-      <h3 className="cisty">Toulouse</h3>
+      <h3 className="city">Toulouse</h3>
     </div>
   );
 }
