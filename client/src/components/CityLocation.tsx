@@ -16,7 +16,7 @@ function CityLocation() {
 
   return (
     <div className="city-location-style">
-      <h1>{cityContext.LocalizedName.toUpperCase()}</h1>
+      <h1 className="city-style">{cityContext.LocalizedName.toUpperCase()}</h1>
       <h2 className="date-style">
         {date.toLocaleDateString("fr-FR", options)}
       </h2>

@@ -3,7 +3,7 @@ import WeatherContext from "../contexts/WeatherContext";
 import "../style-css/WeatherParameter.css";
 import "../style-css/ResponsiveBox.css";
 
-function WeatherParamater() {
+function WeatherParameter() {
   const weatherContext = useContext(WeatherContext);
   const weather = weatherContext.DailyForecasts[0].Day;
   return (
@@ -44,4 +44,4 @@ function WeatherParamater() {
   );
 }
 
-export default WeatherParamater;
+export default WeatherParameter;

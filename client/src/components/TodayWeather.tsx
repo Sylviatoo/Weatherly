@@ -22,7 +22,7 @@ function TodayWeather() {
         className="today-icon"
       />
       <p className="current-time">{`${currentTemp}°${maxUnitTemp}`}</p>
-      <p>{`${minTemp}°${minUnitTemp} - ${maxTemp}°${maxUnitTemp}`}</p>
+      <p className="current-temperature">{`${minTemp}°${minUnitTemp} - ${maxTemp}°${maxUnitTemp}`}</p>
     </div>
   );
 }
