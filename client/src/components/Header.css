@@ -1,0 +1,105 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.logo img {
+  max-height: 15vw;
+  height: auto;
+  max-width: 100%;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 15rem;
+  flex-grow: 1;
+}
+
+.icons a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+
+.icons img {
+  display: none;
+}
+
+.icons p {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem 2rem;
+  }
+
+  .logo img {
+    max-height: 150px;
+    margin-right: 1rem;
+    margin-right: 2rem;
+  }
+
+  .icons {
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .icons a {
+    padding: 0.5px;
+    background-color: #d3d3d3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icons img {
+    display: block;
+    width: 120px;
+    height: auto;
+  }
+
+  .icons p {
+    font-size: 1.2rem;
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .icons {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .logo img {
+    max-height: 30vw;
+  }
+
+  .icons img {
+    width: 70px;
+  }
+
+  .icons p {
+    font-size: 1.5rem;
+  }
+}
