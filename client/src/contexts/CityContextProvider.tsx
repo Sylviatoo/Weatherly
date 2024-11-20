@@ -1,10 +1,17 @@
-import { useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import {
   CityProps,
   getCityByLocation,
   getCurrentPosition,
 } from "../library/api-weather.ts";
-import { CityContext, type CityContextType } from "./CityContext.ts";
+
+interface CityContextProps {
+  city: CityProps;
+  setCity: React.Dispatch<React.SetStateAction<CityProps>>;
+}
+
+type CityContextType = CityContextProps | null;
+const CityContext = createContext<CityContextType>(null);
 
 type CityContextProviderProps = {
   children: React.ReactNode;
@@ -54,7 +61,7 @@ export const useCityContext = () => {
   const value = useContext(CityContext);
 
   if (value == null) {
-    throw new Error("useTheme has to be used within <CityProvider>");
+    throw new Error("useCityContext has to be used within <CityProvider>");
   }
 
   return value;
