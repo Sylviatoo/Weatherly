@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CityProps } from "../library/api-weather";
 import CityFavorites from "./CityFavorites";
 import SearchBar from "./SearchBar";
+import "../style-css/Favorites.css";
 
 function Favorites() {
   const citiesOrigin = Array<CityProps>(0);
@@ -31,9 +32,10 @@ function Favorites() {
 
   return (
     <div className="favorites">
-      <h1>Favorites</h1>
+      <h1>Favoris</h1>
       <SearchBar />
       <CityFavorites cities={cities} />
+      <img src="/src/assets/images/map.svg" alt="today-weather" />
     </div>
   );
 }
