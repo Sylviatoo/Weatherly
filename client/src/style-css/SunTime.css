@@ -41,14 +41,12 @@
 }
 
 @media (min-width: 768px) {
-  .sunrise-style,
-  .sunset-style {
-    width: 80%;
-    display: block;
-  }
-
   .suntime-box {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
     flex-direction: column;
-    gap: 1.5rem;
   }
 }

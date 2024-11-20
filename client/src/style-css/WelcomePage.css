@@ -10,15 +10,7 @@
   .welcome-page-style {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    justify-items: center;
-  }
-
-  .city-location-style {
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-    display: flex;
-    flex-direction: column;
+    grid-template-rows: repeat(2, 1fr);
     justify-items: center;
   }
 
@@ -29,7 +21,7 @@
     align-items: center;
     justify-items: center;
     grid-column: 1 / 2;
-    grid-row: 2 / 3;
+    grid-row: 1 / 2;
     width: 100%;
     height: 100%;
   }
@@ -38,33 +30,68 @@
   .sunset-style {
     max-height: none;
     max-width: none;
-    width: 50%;
-    height: 35%;
-    margin-left: 50%;
+    width: 60%;
+    height: 54%;
+    margin: 0;
+  }
+
+  .sunrise-style {
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .sunset-style {
+    margin-right: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .summary-style {
     grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    padding: 5%;
-  }
-
-  .summary-style > p {
-    margin: 20px;
+    grid-row: 1 / 2;
+    margin: 0;
+    width: 100%;
+    height: 55%;
   }
 
   .weather-box {
     grid-column: 1 / 2;
-    grid-row: 3 / 4;
-    width: 100%;
+    grid-row: 2 / 3;
+    width: 70%;
     height: 100%;
     max-height: none;
     max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .weather-info {
+    grid-template-rows: 1 / 2;
+    grid-template-columns: 1 / 2;
+  }
+
+  .weather-info2 {
+    grid-template-rows: 2 / 3;
+    grid-template-columns: 1 / 2;
+  }
+
+  .weather-info3 {
+    grid-template-rows: 2 / 3;
+    grid-template-columns: 1 / 2;
+  }
+
+  .weather-info4 {
+    grid-template-rows: 2 / 3;
+    grid-template-columns: 2 / 3;
   }
 
   .today-weather-style {
     grid-column: 2 / 3;
-    grid-row: 3 / 4;
+    grid-row: 2 / 3;
     height: 100%;
     width: 100%;
     max-height: none;
@@ -78,6 +105,8 @@
   .title-style {
     grid-row: 1 / 2;
     grid-column: 1 / 3;
+    width: 30%;
+    height: 40%;
   }
 
   .current-time {
@@ -93,12 +122,5 @@
   .today-icon {
     grid-column: 2 / 3;
     grid-row: 2 / 4;
-  }
-
-  .suntime-box {
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    margin: 0;
   }
 }

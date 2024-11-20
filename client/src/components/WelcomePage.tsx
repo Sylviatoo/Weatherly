@@ -8,13 +8,15 @@ import "../style-css/ResponsiveBox.css";
 
 function WelcomePage() {
   return (
-    <div className="welcome-page-style">
+    <>
       <CityLocation />
-      <Summary />
-      <SunTime />
-      <WeatherParameter />
-      <TodayWeather />
-    </div>
+      <div className="welcome-page-style">
+        <Summary />
+        <SunTime />
+        <WeatherParameter />
+        <TodayWeather />
+      </div>
+    </>
   );
 }
 

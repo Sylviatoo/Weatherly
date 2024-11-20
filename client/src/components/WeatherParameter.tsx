@@ -16,7 +16,7 @@ function WeatherParameter() {
         />
         <p className="text-weather-info">{`${weather.Rain.Value} ${weather.Rain.Unit}`}</p>
       </div>
-      <div>
+      <div className="weather-info2">
         <img
           src="/src/assets/images/25.png"
           alt="humidité"
@@ -24,7 +24,7 @@ function WeatherParameter() {
         />
         <p className="text-weather-info">{`${weather.RelativeHumidity.Average} %`}</p>
       </div>
-      <div>
+      <div className="weather-info3">
         <img
           src="/src/assets/images/32.png"
           alt="vent"
@@ -32,7 +32,7 @@ function WeatherParameter() {
         />
         <p className="text-weather-info">{`${weather.Wind.Speed.Value} ${weather.Wind.Speed.Unit}`}</p>
       </div>
-      <div>
+      <div className="weather-info4">
         <img
           src="/src/assets/images/7.png"
           alt="cloud"

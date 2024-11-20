@@ -15,6 +15,11 @@
   padding: 10px;
 }
 
+.summary-style {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .summary-style > p {
   font-size: 1rem;
   padding-top: 10px;
@@ -40,4 +45,17 @@
   background-color: rgba(112, 150, 188, 0.33);
   border-radius: 12px;
   z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .tendancy {
+    width: 50%;
+    height: 25%;
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .summary-style > p {
+    margin: 20px;
+  }
 }
