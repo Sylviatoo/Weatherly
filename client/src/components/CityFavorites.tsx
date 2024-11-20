@@ -1,14 +1,10 @@
-import type { CityProps } from "../library/api-weather";
 import CityFavorite from "./CityFavorite";
+import type { FavoritesProps } from "./Favorites";
 
-interface CityFavorites {
-  cities: CityProps[];
-}
-
-function CityFavorites({ cities }: CityFavorites) {
+function CityFavorites({ citiesFavorites }: FavoritesProps) {
   return (
     <ul className="city-favorites">
-      {cities.map((value) => {
+      {citiesFavorites.map((value) => {
         return <CityFavorite key={value.Key} city={value} />;
       })}
     </ul>

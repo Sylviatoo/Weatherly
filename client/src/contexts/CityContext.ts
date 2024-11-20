@@ -1,6 +1,10 @@
 import { createContext } from "react";
-import { CityProps } from "../library/api-weather";
+import type { CityProps } from "../library/api-weather";
 
-const CityContext = createContext(new CityProps());
+export interface CityContextProps {
+  city: CityProps;
+  setCity: React.Dispatch<React.SetStateAction<CityProps>>;
+}
 
-export default CityContext;
+export type CityContextType = CityContextProps | null;
+export const CityContext = createContext<CityContextType>(null);

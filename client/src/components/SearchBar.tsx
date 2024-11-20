@@ -3,9 +3,12 @@ import {
   type CityProps,
   getCityByAutoCompletion,
 } from "../library/api-weather";
+import type { FavoritesProps } from "./Favorites";
 
-function SearchBar() {
-  const [citiesArray, setCitiesArray] = useState(Array<CityProps>(0));
+function SearchBar({ citiesFavorites, setCitiesFavorites }: FavoritesProps) {
+  const citiesOrigin = Array<CityProps>(0);
+
+  const [cities, setCities] = useState(citiesOrigin);
 
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
     const start = event?.currentTarget?.selectionStart;
@@ -16,7 +19,7 @@ function SearchBar() {
     ) {
       getCityByAutoCompletion(event?.currentTarget?.value as string).then(
         (cities_props) => {
-          setCitiesArray(cities_props);
+          setCities(cities_props);
         },
       );
     }
@@ -45,9 +48,10 @@ function SearchBar() {
 
     const cityProps = JSON.parse(cityString as string) as CityProps;
     event.currentTarget.textContent = cityProps.LocalizedName;
-    const cities = citiesArray.map((item) => item);
+    const cities = citiesFavorites.map((item: CityProps) => item);
     cities.push(cityProps);
-    setCitiesArray(Array<CityProps>(0));
+    setCitiesFavorites(cities);
+    setCities(Array<CityProps>(0));
   };
 
   const handleLiKeyDown = () => {};
@@ -62,7 +66,7 @@ function SearchBar() {
         onChange={handleChange}
       />
       <ul>
-        {citiesArray.map((item) => {
+        {cities.map((item) => {
           return (
             <li
               key={item.Key}

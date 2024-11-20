@@ -1,41 +1,27 @@
 import { useState } from "react";
-import { CityProps } from "../library/api-weather";
+import type { CityProps } from "../library/api-weather";
 import CityFavorites from "./CityFavorites";
 import SearchBar from "./SearchBar";
 
-function Favorites() {
-  const citiesOrigin = Array<CityProps>(0);
+export interface FavoritesProps {
+  citiesFavorites: CityProps[];
+  setCitiesFavorites: React.Dispatch<React.SetStateAction<CityProps[]>>;
+}
 
-  let city = new CityProps();
-
-  city.LocalizedName = "Toulouse";
-  city.Key = "135244";
-  citiesOrigin.push(city);
-
-  city = new CityProps();
-  city.LocalizedName = "Lyon";
-  city.Key = "171210";
-  citiesOrigin.push(city);
-
-  city = new CityProps();
-  city.LocalizedName = "Lille";
-  city.Key = "135564";
-  citiesOrigin.push(city);
-
-  city = new CityProps();
-  city.LocalizedName = "Paris";
-  city.Key = "623";
-  citiesOrigin.push(city);
-
-  const [cities] = useState(citiesOrigin);
+export function Favorites() {
+  const [citiesFavorites, setCitiesFavorites] = useState(Array<CityProps>(0));
 
   return (
     <div className="favorites">
       <h1>Favorites</h1>
-      <SearchBar />
-      <CityFavorites cities={cities} />
+      <SearchBar
+        citiesFavorites={citiesFavorites}
+        setCitiesFavorites={setCitiesFavorites}
+      />
+      <CityFavorites
+        citiesFavorites={citiesFavorites}
+        setCitiesFavorites={setCitiesFavorites}
+      />
     </div>
   );
 }
-
-export default Favorites;
