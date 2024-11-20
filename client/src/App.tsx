@@ -56,7 +56,14 @@ function App() {
           <Header />
         </header>
 
-        <main>
+        <main
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(140,139,253,1) 0%, rgba(191,214,248,1) 50%, rgba(244,160,110,1) 100%)",
+            minHeight: "100vh",
+            padding: "1rem",
+          }}
+        >
           <Outlet />
         </main>
         <footer>

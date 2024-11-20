@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import "../style-css/Header.css";
+import "../style-css/ResponsiveBox.css";
 
 function Header() {
   return (
