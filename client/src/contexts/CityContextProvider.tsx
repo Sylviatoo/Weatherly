@@ -11,18 +11,29 @@ type CityContextProviderProps = {
 };
 
 export function CityContextProvider({ children }: CityContextProviderProps) {
-  const [city, setCity] = useState<CityProps | null>(new CityProps());
-  getCurrentPosition((position) => {
-    if (position.StatusError === undefined) {
-      getCityByLocation(
-        position.Latitude as number,
-        position.Longitude as number,
-      ).then((city_props) => {
-        window.localStorage.setItem("weather-city", JSON.stringify(city_props));
-        setCity(city_props);
-      });
-    }
-  });
+  let cityOrigin = new CityProps();
+
+  const storedCityProps = window.localStorage.getItem("weather-city");
+  if (storedCityProps != null) {
+    cityOrigin = JSON.parse(storedCityProps) as CityProps;
+  } else {
+    getCurrentPosition((position) => {
+      if (position.StatusError === undefined) {
+        getCityByLocation(
+          position.Latitude as number,
+          position.Longitude as number,
+        ).then((city_props) => {
+          window.localStorage.setItem(
+            "weather-city",
+            JSON.stringify(city_props),
+          );
+          cityOrigin = city_props;
+        });
+      }
+    });
+  }
+
+  const [city, setCity] = useState<CityProps | null>(cityOrigin);
 
   const memoCity = useMemo(
     () => ({
