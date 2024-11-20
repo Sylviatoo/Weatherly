@@ -9,8 +9,11 @@ function SearchBar({ citiesFavorites, setCitiesFavorites }: FavoritesProps) {
   const citiesOrigin = Array<CityProps>(0);
 
   const [cities, setCities] = useState(citiesOrigin);
+  const [inputContent, setInputContent] = useState<string | null>(null);
 
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
+    setInputContent(event?.currentTarget?.value);
+
     const start = event?.currentTarget?.selectionStart;
     const end = event?.currentTarget?.selectionEnd;
     if (
@@ -52,6 +55,7 @@ function SearchBar({ citiesFavorites, setCitiesFavorites }: FavoritesProps) {
     cities.push(cityProps);
     setCitiesFavorites(cities);
     setCities(Array<CityProps>(0));
+    setInputContent("" as string);
   };
 
   const handleLiKeyDown = () => {};
@@ -61,6 +65,7 @@ function SearchBar({ citiesFavorites, setCitiesFavorites }: FavoritesProps) {
       <img src="/src/assets/search.png" alt="" />
       <input
         type="text"
+        value={inputContent ?? ""}
         className="search-input"
         placeholder="Rechercher..."
         onChange={handleChange}

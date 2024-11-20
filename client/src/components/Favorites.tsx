@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCityContext } from "../contexts/CityContextProvider";
 import type { CityProps } from "../library/api-weather";
 import CityFavorites from "./CityFavorites";
 import SearchBar from "./SearchBar";
@@ -9,7 +10,11 @@ export interface FavoritesProps {
 }
 
 export function Favorites() {
-  const [citiesFavorites, setCitiesFavorites] = useState(Array<CityProps>(0));
+  const cityContext = useCityContext();
+
+  const [citiesFavorites, setCitiesFavorites] = useState(
+    Array<CityProps>(cityContext.city),
+  );
 
   return (
     <div className="favorites">

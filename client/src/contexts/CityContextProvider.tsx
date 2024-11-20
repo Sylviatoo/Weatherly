@@ -1,5 +1,9 @@
 import { useContext, useMemo, useState } from "react";
-import type { CityProps } from "../library/api-weather.ts";
+import {
+  CityProps,
+  getCityByLocation,
+  getCurrentPosition,
+} from "../library/api-weather.ts";
 import { CityContext, type CityContextType } from "./CityContext.ts";
 
 type CityContextProviderProps = {
@@ -7,7 +11,18 @@ type CityContextProviderProps = {
 };
 
 export function CityContextProvider({ children }: CityContextProviderProps) {
-  const [city, setCity] = useState<CityProps | null>(null);
+  const [city, setCity] = useState<CityProps | null>(new CityProps());
+  getCurrentPosition((position) => {
+    if (position.StatusError === undefined) {
+      getCityByLocation(
+        position.Latitude as number,
+        position.Longitude as number,
+      ).then((city_props) => {
+        window.localStorage.setItem("weather-city", JSON.stringify(city_props));
+        setCity(city_props);
+      });
+    }
+  });
 
   const memoCity = useMemo(
     () => ({
