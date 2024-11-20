@@ -13,9 +13,8 @@ nav {
 }
 
 .logo img {
-  max-height: 15vw;
-  height: auto;
-  max-width: 100%;
+  height: none;
+  width: 250px;
 }
 
 .icons {
@@ -49,11 +48,16 @@ nav {
     justify-content: flex-start;
     padding: 1rem 2rem;
   }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -2rem;
+  }
 
   .logo img {
     max-height: 150px;
     margin-right: 1rem;
-    margin-right: 2rem;
   }
 
   .icons {
@@ -64,13 +68,23 @@ nav {
     margin-top: 1rem;
   }
 
+  .icons .logo img {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+  }
+
   .icons a {
     padding: 0.5px;
-    background-color: #d3d3d3;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 35px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: rgba(201, 201, 201, 0.34);
   }
 
   .icons img {
@@ -92,7 +106,10 @@ nav {
     width: 100%;
   }
   .logo img {
-    max-height: 30vw;
+    max-height: 50vw;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
   }
 
   .icons img {
