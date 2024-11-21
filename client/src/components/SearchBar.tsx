@@ -54,6 +54,7 @@ function SearchBar({ citiesFavorites, setCitiesFavorites }: FavoritesProps) {
     const cities = citiesFavorites.map((item: CityProps) => item);
     cities.push(cityProps);
     setCitiesFavorites(cities);
+    window.sessionStorage.setItem("cities", JSON.stringify(cities));
     setCities(Array<CityProps>(0));
     setInputContent("" as string);
   };

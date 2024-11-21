@@ -82,7 +82,7 @@ ul.city-favorites > li {
 
   ul.city-favorites {
     flex: 1 1 25%;
-    max-width: 50vw;
+    max-width: min(50vw, 768px);
   }
 
   div.favorites > img {

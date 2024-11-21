@@ -13,9 +13,13 @@ export interface FavoritesProps {
 export function Favorites() {
   const cityContext = useCityContext();
 
-  const [citiesFavorites, setCitiesFavorites] = useState(
-    Array<CityProps>(cityContext.city),
-  );
+  const arrayCitiesString = window.sessionStorage.getItem("cities");
+  let citiesOrigin = Array<CityProps>(cityContext.city);
+  if (arrayCitiesString != null) {
+    citiesOrigin = JSON.parse(arrayCitiesString) as CityProps[];
+  }
+
+  const [citiesFavorites, setCitiesFavorites] = useState(citiesOrigin);
 
   return (
     <div className="favorites">
