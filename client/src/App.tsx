@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { CityContextProvider } from "./contexts/CityContextProvider";
-import WeatherContext from "./contexts/WeatherContext";
+import { WeatherContextProvider } from "./contexts/WeatherContextProvider";
 import { WeatherForecastProps } from "./library/api-weather";
 
 function App() {
@@ -50,8 +50,8 @@ function App() {
   }, [storedWeatherForecastString]);
 
   return (
-    <WeatherContext.Provider value={weatherForecast}>
-      <CityContextProvider>
+    <CityContextProvider>
+      <WeatherContextProvider>
         <header>
           <Header />
         </header>
@@ -69,8 +69,8 @@ function App() {
         <footer>
           <Footer />
         </footer>
-      </CityContextProvider>
-    </WeatherContext.Provider>
+      </WeatherContextProvider>
+    </CityContextProvider>
   );
 }
 

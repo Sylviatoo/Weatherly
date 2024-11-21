@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import WeatherContext from "../contexts/WeatherContext";
+import { useWeatherContext } from "../contexts/WeatherContextProvider";
 import "../style-css/Summary.css";
 import "../style-css/ResponsiveBox.css";
 
 function Summary() {
-  const weatherContext = useContext(WeatherContext);
-  const summaryTodayWeather = weatherContext.Headline.Text;
+  const weatherContext = useWeatherContext();
+  const summaryTodayWeather = weatherContext.weather.Headline.Text;
 
   return (
     <div className="summary-style">
