@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import WeatherContext from "../contexts/WeatherContext";
+import { useWeatherContext } from "../contexts/WeatherContextProvider";
 import "../style-css/TodayWeather.css";
 import "../style-css/ResponsiveBox.css";
 
 function TodayWeather() {
-  const weatherContext = useContext(WeatherContext);
-  const weather = weatherContext.DailyForecasts[0];
+  const weatherContext = useWeatherContext();
+  const weather = weatherContext.weather.DailyForecasts[0];
   const currentTemp = weather.Temperature.Maximum.Value;
   const minTemp = weather.Temperature.Minimum.Value;
   const maxTemp = weather.Temperature.Maximum.Value;

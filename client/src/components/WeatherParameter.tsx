@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import WeatherContext from "../contexts/WeatherContext";
+import { useWeatherContext } from "../contexts/WeatherContextProvider";
 import "../style-css/WeatherParameter.css";
 import "../style-css/ResponsiveBox.css";
 
 function WeatherParameter() {
-  const weatherContext = useContext(WeatherContext);
-  const weather = weatherContext.DailyForecasts[0].Day;
+  const weatherContext = useWeatherContext();
+  const weather = weatherContext.weather.DailyForecasts[0].Day;
   return (
     <div className="weather-box">
       <div className="weather-info">
