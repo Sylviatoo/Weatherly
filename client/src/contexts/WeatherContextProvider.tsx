@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import {
   WeatherForecastProps,
   getFiveDaysWeatherForecast,
@@ -21,11 +21,32 @@ export function WeatherContextProvider({
 }: WeatherContextProviderProps) {
   let weatherOrigin = new WeatherForecastProps();
   const cityContextConsumer = useCityContext();
-  getFiveDaysWeatherForecast(cityContextConsumer.city.Key).then(
-    (value: WeatherForecastProps) => {
-      weatherOrigin = value;
-    },
-  );
+
+  let storedWeatherForecastString =
+    window.localStorage.getItem("weather-forecast");
+  let storedWeatherForecast = null;
+
+  if (storedWeatherForecastString !== null) {
+    // preliminary: check if weather forecast is outdated (if it was set more than 24 hours before).
+    storedWeatherForecast = JSON.parse(
+      storedWeatherForecastString,
+    ) as WeatherForecastProps;
+    const dateForecast = new Date(storedWeatherForecast.DailyForecasts[0].Date);
+    const dateCurrent = new Date();
+    const time = dateCurrent.getTime() - dateForecast.getTime();
+    if (time > 24 * 60 * 60 * 1000) {
+      // in this case, we remove the local storage.
+      window.localStorage.removeItem("weather-forecast");
+
+      storedWeatherForecastString = null;
+    }
+  }
+
+  if (storedWeatherForecastString !== null) {
+    weatherOrigin = JSON.parse(
+      storedWeatherForecastString,
+    ) as WeatherForecastProps;
+  }
 
   const [weather, setWeather] = useState<WeatherForecastProps | null>(
     weatherOrigin,
@@ -38,6 +59,20 @@ export function WeatherContextProvider({
     }),
     [weather],
   );
+
+  useEffect(() => {
+    if (storedWeatherForecastString == null) {
+      getFiveDaysWeatherForecast(cityContextConsumer.city.Key).then(
+        (value: WeatherForecastProps) => {
+          window.localStorage.setItem(
+            "weather-forecast",
+            JSON.stringify(value),
+          );
+          setWeather(value);
+        },
+      );
+    }
+  }, [storedWeatherForecastString, cityContextConsumer]);
 
   return (
     <WeatherContext.Provider value={memoWeather as WeatherContextType}>
