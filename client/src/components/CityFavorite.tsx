@@ -7,7 +7,7 @@ interface CityFavoriteProps {
 function CityFavorite({ city }: CityFavoriteProps) {
   return (
     <li className="city-favorite" id-city={city.Key}>
-      {city.LocalizedName}
+      {`${city.LocalizedName}, ${city.AdministrativeArea.LocalizedName}, ${city.Country.LocalizedName}`}
     </li>
   );
 }

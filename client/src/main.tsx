@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Favorites from "./components/Favorites";
+import { Favorites } from "./components/Favorites";
 import FiveDays from "./components/FiveDays";
 import WelcomePage from "./components/WelcomePage";
 

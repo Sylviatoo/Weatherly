@@ -1,11 +1,9 @@
-import { useContext } from "react";
-import CityContext from "../contexts/CityContext";
-import type { CityProps } from "../library/api-weather";
+import { useCityContext } from "../contexts/CityContextProvider";
 import "../style-css/CityLocation.css";
 import "../style-css/ResponsiveBox.css";
 
 function CityLocation() {
-  const cityContext = useContext<CityProps>(CityContext);
+  const cityContext = useCityContext();
   const date = new Date();
   const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
@@ -16,7 +14,9 @@ function CityLocation() {
 
   return (
     <div className="city-location-style">
-      <h1 className="city-style">{cityContext.LocalizedName.toUpperCase()}</h1>
+      <h1 className="city-style">
+        {cityContext.city.LocalizedName.toUpperCase()}
+      </h1>
       <h2 className="date-style">
         {date.toLocaleDateString("fr-FR", options)}
       </h2>
