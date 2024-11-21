@@ -1,43 +1,34 @@
 import { useState } from "react";
-import { CityProps } from "../library/api-weather";
+import { useCityContext } from "../contexts/CityContextProvider";
+import type { CityProps } from "../library/api-weather";
 import CityFavorites from "./CityFavorites";
 import SearchBar from "./SearchBar";
 import "../style-css/Favorites.css";
 
-function Favorites() {
-  const citiesOrigin = Array<CityProps>(0);
+export interface FavoritesProps {
+  citiesFavorites: CityProps[];
+  setCitiesFavorites: React.Dispatch<React.SetStateAction<CityProps[]>>;
+}
 
-  let city = new CityProps();
+export function Favorites() {
+  const cityContext = useCityContext();
 
-  city.LocalizedName = "Toulouse";
-  city.Key = "135244";
-  citiesOrigin.push(city);
-
-  city = new CityProps();
-  city.LocalizedName = "Lyon";
-  city.Key = "171210";
-  citiesOrigin.push(city);
-
-  city = new CityProps();
-  city.LocalizedName = "Lille";
-  city.Key = "135564";
-  citiesOrigin.push(city);
-
-  city = new CityProps();
-  city.LocalizedName = "Paris";
-  city.Key = "623";
-  citiesOrigin.push(city);
-
-  const [cities] = useState(citiesOrigin);
+  const [citiesFavorites, setCitiesFavorites] = useState(
+    Array<CityProps>(cityContext.city),
+  );
 
   return (
     <div className="favorites">
-      <h1>Favoris</h1>
-      <SearchBar />
-      <CityFavorites cities={cities} />
+      <h1>Favorites</h1>
+      <SearchBar
+        citiesFavorites={citiesFavorites}
+        setCitiesFavorites={setCitiesFavorites}
+      />
+      <CityFavorites
+        citiesFavorites={citiesFavorites}
+        setCitiesFavorites={setCitiesFavorites}
+      />
       <img src="/src/assets/images/map.svg" alt="today-weather" />
     </div>
   );
 }
-
-export default Favorites;

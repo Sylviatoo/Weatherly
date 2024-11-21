@@ -33,7 +33,6 @@ export class CityProps {
       LocalizedName: "",
       EnglishName: "",
     };
-    this.FunctionSet = (_value: SetStateAction<CityProps>) => {};
   }
 
   Version: string;
@@ -43,7 +42,6 @@ export class CityProps {
   Country: AreaProps;
   Region: AreaProps;
   AdministrativeArea: AreaProps;
-  FunctionSet: React.Dispatch<React.SetStateAction<CityProps>>;
 }
 
 export interface HeadlineProps {
