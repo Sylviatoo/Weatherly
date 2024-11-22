@@ -12,10 +12,13 @@
 
 .days {
   font-weight: bold;
+  font-size: 2rem;
 }
 
 .city {
   font-weight: lighter;
+  font-size: 1.5rem;
+  margin-top: 8px;
 }
 
 .img-icons {
