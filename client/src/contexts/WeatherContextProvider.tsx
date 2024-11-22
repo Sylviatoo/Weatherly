@@ -61,18 +61,21 @@ export function WeatherContextProvider({
   );
 
   useEffect(() => {
-    if (storedWeatherForecastString == null) {
-      getFiveDaysWeatherForecast(cityContextConsumer.city.Key).then(
-        (value: WeatherForecastProps) => {
-          window.localStorage.setItem(
-            "weather-forecast",
-            JSON.stringify(value),
-          );
-          setWeather(value);
-        },
-      );
+    if (cityContextConsumer.city.Key !== "") {
+      if (weather === null || weather.CityKey === "") {
+        getFiveDaysWeatherForecast(cityContextConsumer.city.Key).then(
+          (value: WeatherForecastProps) => {
+            value.CityKey = cityContextConsumer.city.Key;
+            window.localStorage.setItem(
+              "weather-forecast",
+              JSON.stringify(value),
+            );
+            setWeather(value);
+          },
+        );
+      }
     }
-  }, [storedWeatherForecastString, cityContextConsumer]);
+  }, [weather, cityContextConsumer]);
 
   return (
     <WeatherContext.Provider value={memoWeather as WeatherContextType}>
