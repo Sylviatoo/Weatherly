@@ -481,11 +481,13 @@ export class WeatherForecastProps {
     };
     this.DailyForecasts = Array<OneDayForecastProps>(new OneDayForecastProps());
     this.FunctionSet = (_value: SetStateAction<WeatherForecastProps>) => {};
+    this.CityKey = "";
   }
 
   Headline: HeadlineProps;
   DailyForecasts: OneDayForecastProps[];
   FunctionSet: React.Dispatch<React.SetStateAction<WeatherForecastProps>>;
+  CityKey: string;
 }
 
 export type PositionResultCallback = (position: PositionProps) => void;

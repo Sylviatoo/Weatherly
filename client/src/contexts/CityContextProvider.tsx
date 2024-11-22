@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import {
   CityProps,
   getCityByLocation,
@@ -23,21 +23,6 @@ export function CityContextProvider({ children }: CityContextProviderProps) {
   const storedCityProps = window.localStorage.getItem("weather-city");
   if (storedCityProps != null) {
     cityOrigin = JSON.parse(storedCityProps) as CityProps;
-  } else {
-    getCurrentPosition((position) => {
-      if (position.StatusError === undefined) {
-        getCityByLocation(
-          position.Latitude as number,
-          position.Longitude as number,
-        ).then((city_props) => {
-          window.localStorage.setItem(
-            "weather-city",
-            JSON.stringify(city_props),
-          );
-          cityOrigin = city_props;
-        });
-      }
-    });
   }
 
   const [city, setCity] = useState<CityProps | null>(cityOrigin);
@@ -49,6 +34,37 @@ export function CityContextProvider({ children }: CityContextProviderProps) {
     }),
     [city],
   );
+
+  useEffect(() => {
+    getCurrentPosition((position) => {
+      if (position.StatusError === undefined) {
+        getCityByLocation(
+          position.Latitude as number,
+          position.Longitude as number,
+        ).then((city_props) => {
+          window.localStorage.setItem(
+            "weather-city",
+            JSON.stringify(city_props),
+          );
+          setCity(city_props);
+        });
+      } else {
+        const cityDefault = new CityProps();
+        cityDefault.Type = "city";
+        cityDefault.Key = "623";
+        cityDefault.LocalizedName = "Paris";
+        cityDefault.Version = "1";
+        cityDefault.AdministrativeArea.LocalizedName = "Ville de Paris";
+        cityDefault.Country.LocalizedName = "France";
+
+        window.localStorage.setItem(
+          "weather-city",
+          JSON.stringify(cityDefault),
+        );
+        setCity(cityDefault);
+      }
+    });
+  }, []);
 
   return (
     <CityContext.Provider value={memoCity as CityContextType}>
