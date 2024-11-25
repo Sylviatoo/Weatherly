@@ -68,6 +68,10 @@ ul.city-favorites > li {
   div.favorites {
     flex-direction: column;
   }
+  .leaflet-container {
+    width: 100% !important;
+    height: 300px !important;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -75,6 +79,7 @@ ul.city-favorites > li {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 15px;
   }
 
   div.favorites > h1 {
@@ -95,5 +100,10 @@ ul.city-favorites > li {
     display: flex;
     max-width: 268px;
     max-height: 263px;
+  }
+
+  .leaflet-container {
+    width: 50% !important;
+    height: 300px !important;
   }
 }
