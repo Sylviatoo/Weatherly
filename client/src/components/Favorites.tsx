@@ -23,7 +23,7 @@ export function Favorites() {
 
   return (
     <div className="favorites">
-      <h1>Favorites</h1>
+      <h1>Favoris</h1>
       <SearchBar
         citiesFavorites={citiesFavorites}
         setCitiesFavorites={setCitiesFavorites}
