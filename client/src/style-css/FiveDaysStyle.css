@@ -13,6 +13,7 @@
 .days {
   font-weight: bold;
   font-size: 2rem;
+  padding-bottom: 10px;
 }
 
 .city {
@@ -58,6 +59,12 @@
   text-align: center;
   font-size: 1rem;
   font-weight: lighter;
+}
+
+@media screen and (max-width: 768px) {
+  .days {
+    margin-top: 30px;
+  }
 }
 
 @media (min-width: 768px) {
