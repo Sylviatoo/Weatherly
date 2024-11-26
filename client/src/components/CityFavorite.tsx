@@ -9,9 +9,10 @@ import {
 
 interface CityFavoriteProps {
   city: CityProps;
+  isSelected: boolean;
 }
 
-function CityFavorite({ city }: CityFavoriteProps) {
+function CityFavorite({ city, isSelected }: CityFavoriteProps) {
   const weatherContextConsumer = useWeatherContext();
   const cityContextConsumer = useCityContext();
 
@@ -53,7 +54,7 @@ function CityFavorite({ city }: CityFavoriteProps) {
 
   return (
     <li
-      className="city-favorite"
+      className={`city-favorite${isSelected ? " city-selected" : ""}`}
       id-city={city.Key}
       city-prop={JSON.stringify(city)}
       onClick={handleLiClick}
