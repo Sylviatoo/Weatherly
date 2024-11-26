@@ -14,6 +14,10 @@ div.favorites > h1 {
   color: #fff;
 }
 
+.city-selected {
+  background-color: rgb(145, 69, 216, 40%) !important;
+}
+
 #search-bar {
   margin-bottom: 2rem;
   display: flex;
