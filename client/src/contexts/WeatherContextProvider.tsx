@@ -62,7 +62,11 @@ export function WeatherContextProvider({
 
   useEffect(() => {
     if (cityContextConsumer.city.Key !== "") {
-      if (weather === null || weather.CityKey === "") {
+      if (
+        weather === null ||
+        weather.CityKey === "" ||
+        weather.CityKey !== cityContextConsumer.city.Key
+      ) {
         getFiveDaysWeatherForecast(cityContextConsumer.city.Key).then(
           (value: WeatherForecastProps) => {
             value.CityKey = cityContextConsumer.city.Key;

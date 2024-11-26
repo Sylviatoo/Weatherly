@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCityContext } from "../contexts/CityContextProvider";
-import { type CityProps, getCityByKey } from "../library/api-weather";
+import type { CityProps } from "../library/api-weather";
 import CityFavorites from "./CityFavorites";
 import SearchBar from "./SearchBar";
 import "../style-css/Favorites.css";
@@ -26,21 +26,6 @@ export function Favorites() {
   }
 
   const [citiesFavorites, setCitiesFavorites] = useState(citiesOrigin);
-
-  useEffect(() => {
-    if (
-      citiesFavorites.findIndex(
-        (value) => value.Key === cityContext.city.Key,
-      ) === -1
-    ) {
-      getCityByKey(cityContext.city.Key).then((cityValue) => {
-        const cities = citiesFavorites.map((item: CityProps) => item);
-        cities.push(cityValue);
-        setCitiesFavorites(cities);
-        window.sessionStorage.setItem("cities", JSON.stringify(cities));
-      });
-    }
-  }, [cityContext, citiesFavorites]);
 
   return (
     <div className="favorites">
