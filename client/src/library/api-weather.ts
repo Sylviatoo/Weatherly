@@ -33,6 +33,11 @@ export class CityProps {
       LocalizedName: "",
       EnglishName: "",
     };
+    this.GeoPosition = {
+      Latitude: 0,
+      Longitude: 0,
+      StatusError: undefined,
+    };
   }
 
   Version: string;
@@ -42,6 +47,7 @@ export class CityProps {
   Country: AreaProps;
   Region: AreaProps;
   AdministrativeArea: AreaProps;
+  GeoPosition: PositionProps;
 }
 
 export interface HeadlineProps {
@@ -519,7 +525,7 @@ function apiKey() {
 }
 
 export async function getCityByName(cityName: string): Promise<CityProps> {
-  const request = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey()}&q=${cityName}&language=fr-fr&details=false`;
+  const request = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey()}&q=${cityName}&language=fr-fr&details=true`;
 
   const dataReceived = await processRequest<CityProps[]>(request);
   if (dataReceived.length === 0) {
@@ -536,7 +542,13 @@ export async function getCityByLocation(
   latitude: number,
   longitude: number,
 ): Promise<CityProps> {
-  const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey()}&q=${latitude},${longitude}&language=fr-fr&details=false&toplevel=true`;
+  const request = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey()}&q=${latitude},${longitude}&language=fr-fr&details=true&toplevel=true`;
+
+  return (await processRequest<CityProps>(request)) as CityProps;
+}
+
+export async function getCityByKey(cityKey: string): Promise<CityProps> {
+  const request = `http://dataservice.accuweather.com/locations/v1/${cityKey}?apikey=${apiKey()}&language=fr-fr&details=true`;
 
   return (await processRequest<CityProps>(request)) as CityProps;
 }

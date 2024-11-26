@@ -36,35 +36,39 @@ export function CityContextProvider({ children }: CityContextProviderProps) {
   );
 
   useEffect(() => {
-    getCurrentPosition((position) => {
-      if (position.StatusError === undefined) {
-        getCityByLocation(
-          position.Latitude as number,
-          position.Longitude as number,
-        ).then((city_props) => {
+    if (city == null || city.Key === "") {
+      getCurrentPosition((position) => {
+        if (position.StatusError === undefined) {
+          getCityByLocation(
+            position.Latitude as number,
+            position.Longitude as number,
+          ).then((city_props) => {
+            window.localStorage.setItem(
+              "weather-city",
+              JSON.stringify(city_props),
+            );
+            setCity(city_props);
+          });
+        } else {
+          const cityDefault = new CityProps();
+          cityDefault.Type = "city";
+          cityDefault.Key = "623";
+          cityDefault.LocalizedName = "Paris";
+          cityDefault.Version = "1";
+          cityDefault.AdministrativeArea.LocalizedName = "Ville de Paris";
+          cityDefault.Country.LocalizedName = "France";
+          cityDefault.GeoPosition.Latitude = 48.857;
+          cityDefault.GeoPosition.Longitude = 2.351;
+
           window.localStorage.setItem(
             "weather-city",
-            JSON.stringify(city_props),
+            JSON.stringify(cityDefault),
           );
-          setCity(city_props);
-        });
-      } else {
-        const cityDefault = new CityProps();
-        cityDefault.Type = "city";
-        cityDefault.Key = "623";
-        cityDefault.LocalizedName = "Paris";
-        cityDefault.Version = "1";
-        cityDefault.AdministrativeArea.LocalizedName = "Ville de Paris";
-        cityDefault.Country.LocalizedName = "France";
-
-        window.localStorage.setItem(
-          "weather-city",
-          JSON.stringify(cityDefault),
-        );
-        setCity(cityDefault);
-      }
-    });
-  }, []);
+          setCity(cityDefault);
+        }
+      });
+    }
+  }, [city]);
 
   return (
     <CityContext.Provider value={memoCity as CityContextType}>
