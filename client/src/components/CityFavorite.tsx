@@ -3,6 +3,7 @@ import { useWeatherContext } from "../contexts/WeatherContextProvider";
 import {
   type CityProps,
   type WeatherForecastProps,
+  getCityByKey,
   getFiveDaysWeatherForecast,
 } from "../library/api-weather";
 
@@ -29,16 +30,23 @@ function CityFavorite({ city }: CityFavoriteProps) {
       return;
     }
 
-    const cityProps = JSON.parse(cityString as string) as CityProps;
-    window.localStorage.setItem("weather-city", JSON.stringify(cityProps));
-    cityContextConsumer.setCity(cityProps);
+    const cityFromList = JSON.parse(cityString as string) as CityProps;
 
-    getFiveDaysWeatherForecast(cityProps.Key).then(
-      (value: WeatherForecastProps) => {
-        window.localStorage.setItem("weather-forecast", JSON.stringify(value));
-        weatherContextConsumer.setWeather(value);
-      },
-    );
+    getCityByKey(cityFromList.Key).then((cityProps) => {
+      window.localStorage.setItem("weather-city", JSON.stringify(cityProps));
+      cityContextConsumer.setCity(cityProps);
+
+      getFiveDaysWeatherForecast(cityProps.Key).then(
+        (value: WeatherForecastProps) => {
+          value.CityKey = cityProps.Key;
+          window.localStorage.setItem(
+            "weather-forecast",
+            JSON.stringify(value),
+          );
+          weatherContextConsumer.setWeather(value);
+        },
+      );
+    });
   };
 
   const handleKeyDown = (_event: React.KeyboardEvent<HTMLLIElement>) => {};

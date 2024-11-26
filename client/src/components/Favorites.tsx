@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCityContext } from "../contexts/CityContextProvider";
-import type { CityProps } from "../library/api-weather";
+import { type CityProps, getCityByKey } from "../library/api-weather";
 import CityFavorites from "./CityFavorites";
 import SearchBar from "./SearchBar";
 import "../style-css/Favorites.css";
-import { MapContainer } from "react-leaflet";
-import { Marker, Popup } from "react-leaflet";
-import { TileLayer } from "react-leaflet/TileLayer";
-import "leaflet/dist/leaflet.css";
+import MapLeaflet from "./MapLeaflet";
 
 export interface FavoritesProps {
   citiesFavorites: CityProps[];
   setCitiesFavorites: React.Dispatch<React.SetStateAction<CityProps[]>>;
+}
+
+export interface GeoPositionProps {
+  latitude: number;
+  longitude: number;
 }
 
 export function Favorites() {
@@ -25,6 +27,21 @@ export function Favorites() {
 
   const [citiesFavorites, setCitiesFavorites] = useState(citiesOrigin);
 
+  useEffect(() => {
+    if (
+      citiesFavorites.findIndex(
+        (value) => value.Key === cityContext.city.Key,
+      ) === -1
+    ) {
+      getCityByKey(cityContext.city.Key).then((cityValue) => {
+        const cities = citiesFavorites.map((item: CityProps) => item);
+        cities.push(cityValue);
+        setCitiesFavorites(cities);
+        window.sessionStorage.setItem("cities", JSON.stringify(cities));
+      });
+    }
+  }, [cityContext, citiesFavorites]);
+
   return (
     <div className="favorites">
       <h1>Favoris</h1>
@@ -36,17 +53,10 @@ export function Favorites() {
         citiesFavorites={citiesFavorites}
         setCitiesFavorites={setCitiesFavorites}
       />
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </MapContainer>
+      <MapLeaflet
+        latitude={cityContext.city.GeoPosition.Latitude as number}
+        longitude={cityContext.city.GeoPosition.Longitude as number}
+      />
     </div>
   );
 }

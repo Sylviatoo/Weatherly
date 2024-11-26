@@ -56,6 +56,8 @@ export function CityContextProvider({ children }: CityContextProviderProps) {
         cityDefault.Version = "1";
         cityDefault.AdministrativeArea.LocalizedName = "Ville de Paris";
         cityDefault.Country.LocalizedName = "France";
+        cityDefault.GeoPosition.Latitude = 48.857;
+        cityDefault.GeoPosition.Longitude = 2.351;
 
         window.localStorage.setItem(
           "weather-city",
