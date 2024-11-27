@@ -26,7 +26,7 @@ export function Favorites() {
   }
 
   const [citiesFavorites, setCitiesFavorites] = useState(citiesOrigin);
-
+  const [centerOnCityFavorite, setCenterOnCityFavorite] = useState(true);
   return (
     <div className="favorites">
       <h1>Favoris</h1>
@@ -37,10 +37,15 @@ export function Favorites() {
       <CityFavorites
         citiesFavorites={citiesFavorites}
         setCitiesFavorites={setCitiesFavorites}
+        setCenterOnCityFavorite={setCenterOnCityFavorite}
       />
       <MapLeaflet
         latitude={cityContext.city.GeoPosition.Latitude as number}
         longitude={cityContext.city.GeoPosition.Longitude as number}
+        centerOnCityFavorite={centerOnCityFavorite}
+        setCenterOnCityFavorite={setCenterOnCityFavorite}
+        citiesFavorites={citiesFavorites}
+        setCitiesFavorites={setCitiesFavorites}
       />
     </div>
   );

@@ -74,7 +74,7 @@ ul.city-favorites > li {
   }
   .leaflet-container {
     width: 100% !important;
-    height: 300px !important;
+    height: 450px !important;
   }
 }
 
@@ -108,6 +108,6 @@ ul.city-favorites > li {
 
   .leaflet-container {
     width: 50% !important;
-    height: 300px !important;
+    height: 450px !important;
   }
 }

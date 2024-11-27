@@ -1,3 +1,4 @@
+import type React from "react";
 import { useCityContext } from "../contexts/CityContextProvider";
 import { useWeatherContext } from "../contexts/WeatherContextProvider";
 import {
@@ -10,9 +11,14 @@ import {
 interface CityFavoriteProps {
   city: CityProps;
   isSelected: boolean;
+  setCenterOnCityFavorite: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CityFavorite({ city, isSelected }: CityFavoriteProps) {
+function CityFavorite({
+  city,
+  isSelected,
+  setCenterOnCityFavorite,
+}: CityFavoriteProps) {
   const weatherContextConsumer = useWeatherContext();
   const cityContextConsumer = useCityContext();
 
@@ -36,7 +42,7 @@ function CityFavorite({ city, isSelected }: CityFavoriteProps) {
     getCityByKey(cityFromList.Key).then((cityProps) => {
       window.localStorage.setItem("weather-city", JSON.stringify(cityProps));
       cityContextConsumer.setCity(cityProps);
-
+      setCenterOnCityFavorite(true);
       getFiveDaysWeatherForecast(cityProps.Key).then(
         (value: WeatherForecastProps) => {
           value.CityKey = cityProps.Key;
