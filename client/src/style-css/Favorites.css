@@ -76,6 +76,13 @@ ul.city-favorites > li {
     width: 100% !important;
     height: 450px !important;
   }
+  #search-bar {
+    width: 100%;
+  }
+  .search-input {
+    min-width: 75%;
+    max-width: 75%;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -109,5 +116,9 @@ ul.city-favorites > li {
   .leaflet-container {
     width: 50% !important;
     height: 450px !important;
+  }
+  .search-input {
+    min-width: 25%;
+    max-width: 50%;
   }
 }
