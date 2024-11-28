@@ -85,7 +85,7 @@
   .summary-style {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    width: 80%;
+    width: 530px;
     height: 55%;
     margin-top: 15px;
   }
@@ -127,7 +127,6 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     height: 100%;
-    width: 80%;
     max-height: none;
     max-width: none;
     margin: 0;
