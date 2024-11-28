@@ -498,7 +498,7 @@ export class WeatherForecastProps {
 
 export type PositionResultCallback = (position: PositionProps) => void;
 
-async function processRequest<T>(request: string): Promise<T> {
+export async function processRequest<T>(request: string): Promise<T> {
   try {
     const response = await fetch(request);
     const dataReceived = await response.json();

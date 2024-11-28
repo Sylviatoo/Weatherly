@@ -116,7 +116,9 @@ ul.city-favorites > li {
   .leaflet-container {
     width: 50% !important;
     height: 450px !important;
+    border-radius: 1rem;
   }
+
   .search-input {
     min-width: 25%;
     max-width: 50%;
