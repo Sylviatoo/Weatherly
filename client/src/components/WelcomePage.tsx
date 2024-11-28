@@ -5,6 +5,7 @@ import TodayWeather from "./TodayWeather";
 import WeatherParameter from "./WeatherParameter";
 import "../style-css/WelcomePage.css";
 import "../style-css/ResponsiveBox.css";
+import MapRainViewer from "./MapRainViewer";
 
 function WelcomePage() {
   return (
@@ -15,6 +16,7 @@ function WelcomePage() {
         <SunTime />
         <WeatherParameter />
         <TodayWeather />
+        <MapRainViewer />
       </div>
     </>
   );

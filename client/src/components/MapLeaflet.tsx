@@ -68,7 +68,7 @@ function MapLeaflet({
         centerOnCityFavorite ? longitude : position.longitude,
       ]}
       zoom={13}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
     >
       {/* Add MapClickComponent as child of MapContainer*/}
       <MapClickComponent />
