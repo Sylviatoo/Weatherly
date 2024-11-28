@@ -45,7 +45,7 @@ function MapRainViewer() {
           cityContext.city.GeoPosition.Longitude as number,
         ]}
         zoom={8}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
       >
         {/* Add MapClickComponent as child of MapContainer*/}
         <RainTileLayer />
