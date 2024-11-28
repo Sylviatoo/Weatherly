@@ -27,7 +27,7 @@ export async function getRainTileLayerRoot(): Promise<RainTileLayerRootProps> {
 }
 
 export function getRainTyleLayerPngPath(hostPath: string, path: string) {
-  return `${hostPath}${path}/256/{z}/{x}/{y}/1/1_0.png`;
+  return `${hostPath}${path}/256/{z}/{x}/{y}/7/1_0.png`;
 }
 
 export function getRainTyleLayerPaths(rootProps: RainTileLayerRootProps) {

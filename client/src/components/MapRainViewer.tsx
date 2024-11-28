@@ -34,7 +34,7 @@ function MapRainViewer() {
   }, [rainTyleLayerPaths, index]);
 
   const RainTileLayer = () => {
-    return <TileLayer opacity={1.0} url={rainTileLayerUrl} />;
+    return <TileLayer opacity={0.75} url={rainTileLayerUrl} />;
   };
 
   return (
