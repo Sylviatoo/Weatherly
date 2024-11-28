@@ -47,8 +47,8 @@
 
   .today-weather-style {
     order: 1;
-    width: 80%;
-    max-width: 200px;
+    max-width: 400px;
+    width: 525px;
     height: auto;
     max-height: 400px;
     text-align: center;

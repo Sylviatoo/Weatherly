@@ -75,13 +75,19 @@ ul.city-favorites > li {
   .leaflet-container {
     width: 100% !important;
     height: 450px !important;
+    border-radius: 1rem;
   }
+
   #search-bar {
     width: 100%;
   }
   .search-input {
     min-width: 75%;
     max-width: 75%;
+  }
+
+  li.city-selected {
+    padding: 50px;
   }
 }
 
@@ -104,6 +110,8 @@ ul.city-favorites > li {
   ul.city-favorites {
     flex: 1 1 25%;
     max-width: min(50vw, 768px);
+    padding-left: 50px;
+    padding-right: 50px;
   }
 
   div.favorites > img {
